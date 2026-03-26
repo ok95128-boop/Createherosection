@@ -92,29 +92,6 @@ export function GNB() {
               ))}
             </nav>
 
-            {/* CTA 버튼 (데스크탑) */}
-            <div className="hidden md:flex items-center gap-3">
-              <button
-                onClick={() => navigate("/contact")}
-                className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200"
-                style={{
-                  background: "linear-gradient(135deg, #3182F6, #1A56DB)",
-                  color: "#FFFFFF",
-                  fontSize: "0.875rem",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.opacity = "0.9";
-                  (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-1px)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.opacity = "1";
-                  (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
-                }}
-              >
-                세무사 연결하기
-              </button>
-            </div>
-
             {/* 모바일 햄버거 버튼 */}
             <button
               className="md:hidden p-2 rounded-lg transition-colors"
@@ -156,22 +133,6 @@ export function GNB() {
                 </NavLink>
               ))}
             </nav>
-
-            <div className="mt-auto">
-              <button
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  navigate("/contact");
-                }}
-                className="w-full py-4 rounded-xl text-base font-medium"
-                style={{
-                  background: "linear-gradient(135deg, #3182F6, #1A56DB)",
-                  color: "#FFFFFF",
-                }}
-              >
-                세무사 연결하기
-              </button>
-            </div>
           </div>
         </div>
       )}
