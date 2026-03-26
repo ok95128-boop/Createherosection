@@ -160,6 +160,55 @@ export function HeroSection() {
                 </li>
               ))}
             </ul>
+
+            {/* CTA 버튼 그룹 */}
+            <div className="flex flex-wrap gap-4 mt-2">
+              <button
+                onClick={() => navigate(CTA_BUTTONS.primary.path)}
+                className="group flex items-center gap-2 px-7 py-4 rounded-xl font-medium transition-all duration-200"
+                style={{
+                  background: "linear-gradient(135deg, #3182F6, #1A56DB)",
+                  color: "#FFFFFF",
+                  fontSize: "1rem",
+                  boxShadow: "0 8px 32px rgba(49, 130, 246, 0.35)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                  e.currentTarget.style.boxShadow = "0 12px 40px rgba(49, 130, 246, 0.5)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "0 8px 32px rgba(49, 130, 246, 0.35)";
+                }}
+              >
+                {CTA_BUTTONS.primary.label}
+                <ArrowRight
+                  size={18}
+                  className="transition-transform duration-200 group-hover:translate-x-1"
+                />
+              </button>
+
+              <button
+                onClick={() => navigate(CTA_BUTTONS.secondary.path)}
+                className="flex items-center gap-2 px-7 py-4 rounded-xl font-medium transition-all duration-200"
+                style={{
+                  background: "#F5F5F5",
+                  color: "#1A1A1A",
+                  fontSize: "1rem",
+                  border: "1px solid #E0E0E0",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "#EBEBEB";
+                  e.currentTarget.style.borderColor = "#D0D0D0";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "#F5F5F5";
+                  e.currentTarget.style.borderColor = "#E0E0E0";
+                }}
+              >
+                {CTA_BUTTONS.secondary.label}
+              </button>
+            </div>
           </div>
 
           {/* ── 오른쪽: 비주얼 영역 ── */}
