@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router";
 import { ArrowRight, CheckCircle, TrendingUp, Shield, Users } from "lucide-react";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 /**
  * 히어로 배지 텍스트
@@ -64,27 +65,6 @@ const STATS = [
     value: "100%",
     label: "전문가 검수 완료",
     color: "#FF6B35",
-  },
-];
-
-/**
- * 플로팅 인포 카드 데이터
- * - 히어로 배경에 떠있는 세금 정보 미리보기 카드
- */
-const FLOATING_CARDS = [
-  {
-    id: "vat",
-    tag: "💡 절세 팁",
-    title: "부가세 환급, 이렇게 받으세요",
-    desc: "매입세액 공제로 최대 10% 환급 가능",
-    color: "#3182F6",
-  },
-  {
-    id: "income",
-    tag: "📋 신고 가이드",
-    title: "5월 종합소득세 신고 체크리스트",
-    desc: "프리랜서 필수 서류 한눈에 보기",
-    color: "#00C7BE",
   },
 ];
 
@@ -212,10 +192,77 @@ export function HeroSection() {
           </div>
 
           {/* ── 오른쪽: 비주얼 영역 ── */}
-          <div className="hidden lg:flex flex-col gap-5 items-end">
-            {FLOATING_CARDS.map((card) => (
-              <FloatingCard key={card.id} card={card} />
-            ))}
+          <div className="hidden lg:flex flex-col justify-center items-center">
+            <div 
+              className="relative rounded-2xl overflow-hidden shadow-2xl"
+              style={{
+                width: "500px",
+                height: "300px",
+                border: "1px solid rgba(0,0,0,0.08)",
+              }}
+            >
+              <ImageWithFallback
+                src="https://images.unsplash.com/photo-1591522810633-3363f115af87?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YXglMjBhY2NvdW50aW5nJTIwYnVzaW5lc3MlMjBwcm9mZXNzaW9uYWx8ZW58MXx8fHwxNzc0NTc1MTIwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                alt="세무 서비스 배너"
+                width={500}
+                height={300}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+              />
+              {/* 배너 오버레이 */}
+              <div 
+                className="absolute inset-0 flex flex-col items-center justify-center"
+                style={{
+                  background: "linear-gradient(135deg, rgba(49, 130, 246, 0.85), rgba(26, 86, 219, 0.85))",
+                }}
+              >
+                <h3
+                  style={{
+                    color: "#FFFFFF",
+                    fontSize: "1.75rem",
+                    fontWeight: 800,
+                    textAlign: "center",
+                    marginBottom: "0.75rem",
+                    textShadow: "0 2px 8px rgba(0,0,0,0.15)",
+                  }}
+                >
+                  전문 세무사와 1:1 상담
+                </h3>
+                <p
+                  style={{
+                    color: "rgba(255,255,255,0.95)",
+                    fontSize: "1rem",
+                    textAlign: "center",
+                    marginBottom: "1.5rem",
+                  }}
+                >
+                  5월 종합소득세 신고 완벽 대비
+                </p>
+                <button
+                  onClick={() => navigate("/contact")}
+                  className="px-6 py-3 rounded-lg font-medium transition-all duration-200"
+                  style={{
+                    background: "#FFFFFF",
+                    color: "#3182F6",
+                    fontSize: "0.9375rem",
+                    fontWeight: 600,
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "scale(1.05)";
+                    e.currentTarget.style.boxShadow = "0 4px 20px rgba(0,0,0,0.2)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "scale(1)";
+                    e.currentTarget.style.boxShadow = "none";
+                  }}
+                >
+                  무료 상담 신청하기
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -262,51 +309,6 @@ function HeroBadge({ text }: { text: string }) {
         />
         {text}
       </span>
-    </div>
-  );
-}
-
-function FloatingCard({
-  card,
-}: {
-  card: { id: string; tag: string; title: string; desc: string; color: string };
-}) {
-  return (
-    <div
-      className="w-full max-w-sm rounded-2xl p-5 transition-transform duration-300 hover:-translate-y-1"
-      style={{
-        background: "#F9F9FB",
-        border: "1px solid #E5E5E8",
-        backdropFilter: "blur(12px)",
-      }}
-    >
-      <div className="flex items-start gap-4">
-        <div
-          className="w-10 h-10 rounded-xl flex items-center justify-center text-lg flex-shrink-0"
-          style={{ background: `${card.color}18` }}
-        >
-          {card.tag.split(" ")[0]}
-        </div>
-        <div className="flex flex-col gap-1">
-          <span
-            className="text-xs font-medium"
-            style={{ color: card.color }}
-          >
-            {card.tag.replace(/^\S+\s/, "")}
-          </span>
-          <p
-            className="font-medium leading-snug"
-            style={{ color: "#1A1A1A", fontSize: "0.9375rem" }}
-          >
-            {card.title}
-          </p>
-          <p
-            style={{ color: "#7A7A7A", fontSize: "0.8125rem" }}
-          >
-            {card.desc}
-          </p>
-        </div>
-      </div>
     </div>
   );
 }
